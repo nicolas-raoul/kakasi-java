@@ -7,7 +7,9 @@ Originally written by Tomoyuki Kawao
 Forked from the last code found at http://blog.kenichimaehashi.com/?article=13048363750
 If you know any more recent version, please let me know by email nicolas.raoul at gmail
 
-Usage: kakasi_j [-JH | -JK | -Ja] [-HK | -Ha] [-KH | -Ka]
+To build just run: ant
+
+Usage: java -Dkakasi.home=. -jar lib/kakasi.jar [-JH | -JK | -Ja] [-HK | -Ha] [-KH | -Ka]
 		[-i<input-encoding>] [-o<output-encoding>]
 		[-p] [-f] [-c] [-s] [-b]
 		[-r{hepburn|kunrei}] [-C | -U] [-w]
@@ -34,3 +36,8 @@ Usage: kakasi_j [-JH | -JK | -Ja] [-HK | -Ha] [-KH | -Ka]
 	 -C: romaji Capitalize
 	 -U: romaji Uppercase
 	 -w: wakachigaki mode
+
+Example:
+java  -Dkakasi.home=. -jar lib/kakasi.jar -Ja
+国際財務報告基準
+kokusaizaimuhoukokukijun
