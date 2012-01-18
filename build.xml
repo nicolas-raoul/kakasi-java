@@ -1,0 +1,210 @@
+<!-- $Id: build.xml,v 1.16 2003/03/01 12:52:19 kawao Exp $ -->
+<!-- Copyright (C) 2002-2003  KAWAO, Tomoyuki (kawao@kawao.com) -->
+<!-- This is the ant build file for KAKASI/Java. -->
+
+<project name="KAKASI/Java" default="release-build" basedir=".">
+
+  <target name="init">
+    <property name="version" value="0.4.0"/>
+    <property name="release.name" value="kakasi-java-${version}"/>
+    <property name="source.dir" value="src"/>
+    <property name="class.dir" value="classes"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="bin.dir" value="bin"/>
+    <property name="dict.dir" value="dict"/>
+    <property name="doc.dir" value="docs"/>
+    <property name="package.dir" value="."/>
+    <property name="javadoc.dir" value="${doc.dir}/api"/>
+    <property name="install.base" value="/usr/local"/>
+    <property name="jar.file" value="${lib.dir}/kakasi.jar"/>
+    <property name="kanwa.dict" value="${lib.dir}/kanwadict"/>
+    <property name="kakasi.dict" value="${dict.dir}/kakasidict"/>
+    <property name="compile.debug" value="on"/>
+    <property name="compile.deprecation" value="on"/>
+    <property name="compile.optimize" value="off"/>
+    <uptodate
+      property="kanwa.uptodate"
+      srcfile="${kakasi.dict}"
+      targetfile="${kanwa.dict}"/>
+    <uptodate
+      property="javadoc.uptodate" targetfile="${javadoc.dir}/index.html">
+      <srcfiles dir="${source.dir}" includes="**/*.java"/>
+    </uptodate>
+    <condition property="sdoc.uptodate">
+      <or>
+        <not><available file="${doc.dir}/index.sdoc"/></not>
+        <uptodate
+          property="sdoc.uptodate"
+          srcfile="${doc.dir}/index.sdoc"
+          targetfile="${doc.dir}/index.html"/>
+      </or>
+    </condition>
+  </target>
+
+  <target name="compile" depends="init">
+    <mkdir dir="${class.dir}"/>
+    <javac
+      srcdir="${source.dir}"
+      destdir="${class.dir}"
+      excludes="**/CVS/**"
+      classpath="${class.dir}"
+      debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+      optimize="${compile.optimize}"
+      />
+    <property
+      name="resource.dir" value="${class.dir}/com/kawao/kakasi/resources"/>
+    <mkdir dir="${resource.dir}"/>
+    <copy file="${dict.dir}/itaijidict" toDir="${resource.dir}"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="${lib.dir}"/>
+    <jar jarfile="${jar.file}" basedir="${class.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="com.kawao.kakasi.Kakasi"/>
+        <attribute name="Implementation-Title" value="KAKASI/Java"/>
+        <attribute name="Implementation-Version" value="${version}"/>
+        <attribute name="Implementation-Vendor" value="KAWAO, Tomoyuki"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="javadoc" depends="init" unless="javadoc.uptodate">
+    <delete dir="${javadoc.dir}"/>
+    <mkdir dir="${javadoc.dir}"/>
+    <javadoc
+      packagenames="com.kawao.kakasi"
+      sourcepath="${source.dir}"
+      destdir="${javadoc.dir}"
+      Locale="en_US"
+      Windowtitle="KAKASI/Java API Documentation"
+      Doctitle="KAKASI/Java API"
+      bottom="&lt;font size=-1&gt;Copyright (c) 2002-2003 Tomoyuki Kawao. All Rights Reserved.&lt;/font&gt;"
+      />
+  </target>
+
+  <target name="kanwa" depends="jar" unless="kanwa.uptodate">
+    <java classname="com.kawao.kakasi.KanwaDictionary" classpath="${jar.file}">
+      <arg file="${kanwa.dict}"/>
+      <arg file="${kakasi.dict}"/>
+    </java>
+  </target>
+
+  <target name="all" depends="kanwa, javadoc, sdoc">
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${class.dir}"/>
+    <delete file="${jar.file}"/>
+    <delete dir="${javadoc.dir}"/>
+    <delete file="${kanwa.dict}"/>
+  </target>
+
+  <target name="release-init">
+    <property name="compile.debug" value="on"/>
+    <property name="compile.deprecation" value="off"/>
+    <property name="compile.optimize" value="on"/>
+  </target>
+
+  <target name="release-build" depends="release-init, kanwa, javadoc">
+  </target>
+
+  <target name="install" depends="release-build">
+    <property name="install.dir" value="${install.base}/${release.name}"/>
+    <mkdir dir="${install.dir}"/>
+    <copy todir="${install.dir}">
+      <fileset dir=".">
+        <include name="COPYING"/>
+        <include name="AUTHORS" />
+        <include name="${bin.dir}/*"/>
+        <include name="${lib.dir}/*"/>
+      </fileset>
+      <fileset dir=".">
+        <include name="${doc.dir}/**/*"/>
+        <exclude name="${doc.dir}/*.sdoc"/>
+        <exclude name="${doc.dir}/SmartDoc.properties"/>
+      </fileset>
+    </copy>
+    <chmod file="${install.dir}/${bin.dir}/*" perm="+x"/>
+  </target>
+
+  <target name="sdoc" depends="init"  unless="sdoc.uptodate">
+    <property
+      name="sdoc.jar" value="/usr/local/share/java/classes/SmartDoc.jar"/>
+    <java jar="${sdoc.jar}" fork="true" dir="${doc.dir}">
+      <arg value="index.sdoc"/>
+    </java>
+  </target>
+
+  <target name="make-package-init" depends="release-init">
+    <property name="temp.dir" value="tmp"/>
+    <mkdir dir="${temp.dir}"/>
+    <property name="install.base" value="${temp.dir}"/>
+  </target>
+
+  <target name="make-package" depends="make-package-init, sdoc, install">
+    <property
+      name="bin.tgz.file" value="${package.dir}/${release.name}-bin.tar.gz"/>
+    <property
+      name="bin.zip.file" value="${package.dir}/${release.name}-bin.zip"/>
+    <property
+      name="src.tgz.file" value="${package.dir}/${release.name}-src.tar.gz"/>
+    <property
+      name="src.zip.file" value="${package.dir}/${release.name}-src.zip"/>
+    <tar destfile="${bin.tgz.file}" compression="gzip">
+      <tarfileset
+        dir="${install.base}" includes="${release.name}/bin/*" mode="755"/>
+      <tarfileset
+        dir="${install.base}"
+        includes="${release.name}/**/*"
+        excludes="${release.name}/bin/*"/>
+    </tar>
+    <zip
+      destfile="${bin.zip.file}"
+      basedir="${install.base}"
+      includes="${release.name}/**/*"/>
+    <patternset id="source.files">
+      <include name="COPYING" />
+      <include name="AUTHORS" />
+      <include name="build.xml" />
+      <include name="${doc.dir}/*.html" />
+      <include name="${doc.dir}/*.css" />
+      <include name="${source.dir}/**/*.java" />
+      <exclude name="${source.dir}/**/*Test.java"/>
+      <exclude name="${source.dir}/**/*Tests.java"/>
+      <include name="${dict.dir}/*" />
+    </patternset>
+    <tar destfile="${src.tgz.file}" compression="gzip">
+      <tarfileset dir="." prefix="${release.name}-src">
+        <patternset refid="source.files" />
+      </tarfileset>
+      <tarfileset
+        dir="."
+        prefix="${release.name}-src"
+        includes="${bin.dir}/*"
+        mode="755"/>
+    </tar>
+    <zip destfile="${src.zip.file}">
+      <zipfileset dir="." prefix="${release.name}-src">
+        <patternset refid="source.files" />
+      </zipfileset>
+      <zipfileset
+        dir="." prefix="${release.name}-src" includes="${bin.dir}/*"/>
+    </zip>
+    <delete dir="${install.dir}"/>
+  </target>
+
+  <target name="release">
+    <property name="temp.dir" value="tmp"/>
+    <property name="cvs.package" value="kakasi"/>
+    <property name="work.dir" value="${temp.dir}/${cvs.package}"/>
+    <mkdir dir="${temp.dir}"/>
+    <cvs package="${cvs.package}" dest="${temp.dir}"/>
+    <ant dir="${work.dir}" target="make-package">
+      <property name="package.dir" value="../.."/>
+    </ant>
+    <delete dir="${work.dir}"/>
+  </target>
+
+</project>

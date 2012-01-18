@@ -1,0 +1,540 @@
+/*
+ * $Id: stylesheet.css,v 1.2 2002/12/24 09:59:04 kawao Exp $
+ */  
+
+A:link {
+  color: green;
+}
+
+A:visited {
+  color: lightseagreen;
+}
+
+A:hover{
+  color: darkkhaki;
+};
+
+body {
+  background: white;
+  font-family: times, serif;
+}
+
+h1 {
+}
+
+h1.title {
+  color: black;
+  background: khaki;
+  text-align: center;
+  border-style: outset;
+  border-color: #fff68f;
+  padding: 10pt;
+  margin-left: 60pt;
+  margin-right: 60pt;
+}
+
+h1.part {
+  font-weight: bold;
+  color: black;
+  background: darkkhaki;
+  padding: 20pt;
+}
+
+h1.chapter {
+  color: lightgreen;
+  background: black;
+  text-align: left;
+  padding: 5pt;
+}
+
+h2 {
+  color: orange;
+  background: #666666;
+  padding: 3pt;
+}
+
+h3 {
+  color: black;
+  background: #aaaaaa;
+  padding: 2pt;
+  margin-right: 100pt;
+}
+
+h4 {
+  color: black;
+  background: #eeeeee;
+  padding: 1pt;
+  margin-right: 200pt;
+}
+
+dfn {
+  font-weight: bold;
+  font-style: normal;
+}
+
+code {
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+}
+
+li p {
+  text-indent: 0pt;
+}
+
+dt {
+  font-weight: bold;
+}
+
+th p {
+  text-indent: 0pt;
+}
+
+td p {
+  text-indent: 0pt;
+}
+
+div.table {
+}
+
+table.data {
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+  background-color: green;
+}
+
+table.data caption {
+  background-color: powderblue;
+  font-weight: bold;
+}
+
+table.data th {
+  color: salmon;
+  background-color: RoyalBlue;
+}
+
+table.data tr {
+  border-style: solid;
+  border-width: thin;
+}
+
+table.data td {
+  background-color: lavender;
+}
+
+table.data td.key {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+
+table.menu {
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+  text-align: center;
+}
+
+table.menu caption {
+  background-color: powderblue;
+  font-weight: bold;
+}
+
+table.menu th {
+  color: salmon;
+  background-color: RoyalBlue;
+}
+
+table.menu td {
+  color: OrangeRed;
+  background-color: lavender;
+  font-weight: bold;
+  padding: 10pt;
+}
+
+table.menu td.key {
+  font-size: x-large;
+  color: lightseagreen;
+  background-color: tan;
+  font-weight: bold;
+  padding: 10pt;
+}
+
+table.menu td.key A:link {
+  color: lightseagreen;
+}
+
+table.menu td.key A:visited {
+  color: lightseagreen;
+}
+
+table.navigator {
+}
+
+table.navigator td {
+  text-align: center;
+  font-weight: bold;
+}
+
+table.languages {
+  margin-bottom: 0pt;
+  margin-top: 0pt;
+  font-size: x-small;
+}
+
+table.languages td.current {
+}
+
+table.languages td.other {
+  background-color: bisque;
+}
+
+table.header {
+  border-style: none;
+}
+
+table.header td { 
+  font-size: small;
+  padding-right: 5pt;
+  border-style: none;
+}
+
+table.header col {
+  border-style: none;
+}
+
+table.footer {
+  border-color: black;
+  width: 100%;
+  border-style: double;
+  border-width: thick 0pt 0pt;
+  margin-top: 20pt;
+  font-size: small;
+  text-align: left;
+}
+
+table.footer col {
+  border-style: none;
+}
+
+table.footer td {
+  border-style: none;
+}
+
+table.footerleft {
+  text-align: left;
+  border-style: none;
+}
+
+table.footerright {
+  width: 100%;
+  text-align: right;
+  border-style: none;
+}
+
+p {
+  margin: 0pt;
+  text-indent: 1em;
+}
+
+p ja {
+  margin: 0pt;
+  text-indent: 1em;
+}
+
+p.first {
+  margin: 0pt;
+  text-indent: 1em;
+}
+
+p.first_ja {
+  margin: 0pt;
+  text-indent: 1em;
+}
+
+div.title {
+  text-align: center;
+}
+
+div.toc {
+  background-color: ivory;
+  padding: 10pt;
+  border-style: inset;
+  border-color: ivory;
+  margin-top: 10pt;
+  margin-bottom: 30pt;
+}
+
+div.titletoc {
+  background-color: ivory;
+  padding: 10pt;
+  border-style: inset;
+  border-color: ivory;
+  margin-top: 10pt;
+  margin-bottom: 30pt;
+}
+
+div.date {
+  text-align: center;
+}
+
+div.org {
+  text-align: center;
+}
+
+div.author {
+  text-align: center;
+  font-weight: bold;
+}
+
+div.email {
+  text-align: center;
+}
+
+div.hp {
+  text-align: center;
+}
+
+div.summary {
+  color: OrangeRed;
+  background: gold;
+  border-style: inset;
+  border-color: powderblue;
+  margin-top: 20pt;
+  margin-bottom: 20pt;
+  margin-left: 30pt;
+  margin-right: 30pt;
+  padding: 5pt;
+}
+
+div.comment {
+  color: red;
+  background: salmon;
+}
+
+span.comment {
+  color: red;
+  background: salmon;
+}
+
+div.navigator {
+  background: powderblue;
+  border-top: 1pt solid black;
+  border-bottom: 1pt solid black;
+  text-align: center;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+}
+
+div.navigatortop {
+  background: powderblue;
+  border-top: 1pt solid black;
+  border-bottom: 1pt solid black;
+  text-align: center;
+  margin-bottom: 10pt;
+}
+
+div.navigatorbottom {
+  background: powderblue;
+  border-top: 1pt solid black;
+  border-bottom: 1pt solid black;
+  text-align: center;
+  margin-top: 10pt;
+}
+
+div.languages {
+  text-align: right;
+}
+
+div.footnote {
+  background: lavender;
+}
+
+div.fyi {
+  color: OrangeRed;
+  background: gainsboro;
+  padding: 5pt;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+}
+
+div.fyi div.title {
+  background: lavender;
+  font-weight: bold;
+  padding: 5pt;
+  margin-top: 5pt;
+  margin-bottom: 5pt;
+}
+
+div.caption {
+  background: antiquewhite;
+  font-weight: bold;
+  padding: 5pd;
+  width: 300pt;
+  margin-top: 10pt;
+}
+
+div.result {
+  background: cornsilk;
+  border-style: inset;
+  border-color: darkkhaki;
+  padding: 10pt;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+}
+
+span.caption {
+  background: antiquewhite;
+  font-weight: bold;
+}
+
+pre.program {
+  background-color: peachpuff;
+  font-family: courier, monospace;
+  padding: 5pt;
+  margin-right: 30pt;
+}
+
+pre.program em {
+  color: red;
+  font-style: normal;
+}
+
+pre.program strong {
+  color: red;
+  background-color: salmon;
+  font-style: normal;
+}
+
+pre.program span.keyword {
+  color: Blue;
+  font-style: normal;
+}
+
+pre.program span.primitive {
+  color: Green;
+  font-style: normal;
+}
+
+pre.program span.comment {
+  color: Red;
+  background-color: peachpuff;
+  font-style: normal;
+}
+
+pre.program span.quote {
+  color: maroon;
+  font-style: normal;
+}
+
+var {
+  color: green;
+  font-style: italic;
+}
+
+tt {
+  font-family: courier, monospace;
+}
+
+code {
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+}
+
+pre.console {
+  background-color: black;
+  color: white;
+  font-family: courier, monospace;
+  padding: 5pt;
+  margin-right: 30pt;
+}
+
+pre.console kbd {
+  font-family: courier, monospace;
+  color: salmon;
+}
+
+span.toggle {
+  font-weight: bold;
+}
+
+div.figure {
+  text-align: center;
+}
+
+img.figure {
+  margin: 10pt;
+}
+
+div.equation {
+  margin-top: 1em;
+  margin-right: 30pt;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  padding-left: 4em;
+  padding-bottom: 1em;
+  background: khaki;
+}
+
+div.equation table {
+}
+
+div.equation table td.padding {
+  width:2em
+}
+
+td.equationNumber {
+  width: 4em;
+  text-align: right;
+}
+
+div.prologue {
+  text-align: right;
+  margin-bottom: 5pt;
+  padding-right: 10pt;
+  border-style: double;
+  border-width: 0pt 0pt thick 0pt;
+}
+
+table.prologue {
+  text-align: right;
+  width: 100%;
+  margin-bottom: 5pt;
+  padding-right: 10pt;
+  border-style: double;
+  border-width: 0pt 0pt thick 0pt;
+  border-color: black;
+}
+
+table.prologue table {
+  float: right;
+  background-color: white;
+  border-style: none;
+  margin: 0pt;
+}
+
+table.prologue td {
+  background-color: white;
+}
+
+td.quote {
+  text-align: left;
+}
+
+td.quotedata {
+  text-align: right;
+}
+
+br.prologueend {
+  clear: right;
+}
+
+table.prologue td {
+  border-style: none;
+}
+
+div.indexbody h2 { 
+  background: khaki;
+}
+
+div.indexbody A {
+  text-decoration: none;
+}
