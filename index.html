@@ -1,0 +1,750 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/REC-html401/loose.dtd">
+<html lang="ja">
+<head>
+<META http-equiv="Content-Type" content="text/html;charset=ISO-2022-JP">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META name="generator" content="SmartDoc 1.0">
+<title>KAKASI/Java</title>
+<link rel=stylesheet type="text/css" href="stylesheet.css">
+<script type="text/javascript">
+<!--
+/*
+ * HTML4JavaScript.js
+ *
+ * @since   Nov. 17, 1998
+ * @version Oct. 22, 2001
+ * @author  ASAMI, Tomoharu (asami@zeomtech.com)
+ */
+var backupColor=null;
+var backupBGColor=null;
+var backupFontStyle=null;
+var backupIDColor=null;
+var backupIDBGColor=null;
+var backupIDFontStyle=null;
+var backupIDBorderStyle=null;
+
+var backupOnKeyDown=null;
+
+function normal(element) {
+  if (document.all) {
+    if (backupColor != null) {
+      element.style.color=backupColor;
+      backupColor=null;
+    }
+    if (backupBGColor != null) {
+      element.style.background=backupBGColor;
+      backupBGColor=null;
+    }
+    if (backupFontStyle != null) {
+      element.style.fontStyle=backupFontStyle;
+      backupFontStyle=null;
+    }
+    var id = null;
+    if (element.href != null) {
+      id = element.href;
+      id = id.substring(id.indexOf("#") + 1);
+    }
+    if (id != null) {
+      var target = document.all.item(id, 0);
+      if (backupIDColor != null) {
+        target.style.color=backupIDColor;
+        backupIDColor=null;
+      }
+      if (backupIDBGColor != null) {
+        target.style.background=backupIDBGColor;
+        backupIDBGColor=null;
+      }
+      if (backupIDFontStyle != null) {
+        target.style.fontStyle=backupIDFontStyle;
+        backupIDFontStyle=null;
+      }
+      if (backupIDBorderStyle != null) {
+        target.style.borderStyle=backupIDBorderStyle;
+        backupIDBorderStyle=null;
+      }
+    }
+  }
+}
+
+function hilight(element) {
+  if (document.all) {
+    backupBGColor=element.style.background;
+    element.style.background="gold";
+  }
+}
+
+function hilightString(element, color) {
+  if (color == null) {
+    color="darkolivegreen";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function hilightSelflink(element, color) {
+  if (color == null) {
+    color="darkolivegreen";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+    var id = null;
+    if (element.href != null) {
+      id = element.href;
+      id = id.substring(id.indexOf("#") + 1);
+    }
+    if (id != null) {
+      var target = document.all.item(id, 0);
+      backupIDColor=target.style.color;
+//      backupIDBGColor=target.style.background;
+//      backupIDFontStyle=target.style.fontStyle;
+      backupIDBorderStyle=target.style.borderStyle;
+      target.style.color="red";
+      target.style.borderStyle="outset";
+    }
+  }
+}
+
+function hilightHyperlink(element, color) {
+  if (color == null) {
+    color="darkorange";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function hilightExternallink(element, color) {
+  if (color == null) {
+    color="purple";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function toggleChildren(node) {
+  if (document.all) {
+    for (i = 0;i < node.children.length;i++) {
+      var child = node.children[i];
+      if (child.className == "dynamic") {
+        if (child.style.display == "") {
+            child.style.display = "none";
+        } else {
+            child.style.display = "";
+        }
+      }
+    }
+  }
+}
+
+function toggleDynamic(node) {
+  if (document.all) {
+    if (node.tagName == "LI") {
+      toggleChildren(node);
+    }
+  }
+}
+
+function isMsie4orGreater() { 
+  var ua = window.navigator.userAgent; var msie = ua.indexOf ("MSIE");
+  if (msie > 0) {
+    return (parseInt (ua.substring (msie+5, ua.indexOf (".", msie))) >= 4)   
+      && (ua.indexOf ("MSIE 4.0b") <0);
+  } else {
+    return false;
+  }
+}
+
+function keyEventHandler() {
+  if (document.all) {
+    if (event.keyCode == 13) {
+      var child = document.all.item("_next_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else if (event.keyCode == 39) {
+      var child = document.all.item("_next_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else if (event.keyCode = 37) {
+      var child = document.all.item("_prev_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else {
+      backupOnKeyDown();
+    }
+  }
+}
+
+function setOHPHandler() {
+  backupOnKeyDown=document.onkeydown;
+  document.onkeydown=keyEventHandler;
+}
+// -->
+</script>
+</head>
+<body>
+
+<h1 class="title">KAKASI/Java</h1>
+
+
+<h2 id="doc1_30">KAKASI/Java とは?</h2>
+
+<p class="first_ja">KAKASI/Java は、漢字→かな(ローマ字)変換プログラム <a href="http://kakasi.namazu.org/" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">KAKASI</a> とほぼ同等の機能を Java で実装したものです。
+    現在のところ、一部の機能しか実装していませんが、おいおい機能を追加していく予定です。</p>
+<p>最新版は、 <a href="http://www.kawao.com/java/kakasi/" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">http://www.kawao.com/java/kakasi/</a> から入手することができます。</p>
+<p>コメントやバグレポートは、 <a href="mailto:kawao@kawao.com" onMouseOver="hilightHyperlink(this)" onMouseOut="normal(this)">kawao@kawao.com</a> 宛にお送りください。</p>
+
+<h2 id="doc1_51">新着情報</h2>
+
+
+<dl>
+<dt>
+2003/3/2 Version 0.4.0
+<dd>
+ローマ字への変換機能 (-JA, -Ha, -Ka, -r, -C, -U オプション) を追加。</dl>
+
+
+<dl>
+<dt>
+2003/2/19 Version 0.3.2
+<dd>
+<a href="http://www.kawao.com/java/kakasi-ws/" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">KAKASI WebService</a> 用に、複数の Kakasi オブジェクトで漢和辞書オブジェクトを共有できるようにした。</dl>
+
+
+<dl>
+<dt>
+2003/1/1 Version 0.3.1
+<dd>
+プログラムソースのrefinement.</dl>
+
+
+<dl>
+<dt>
+2002/12/31 Version 0.3.0
+<dd>
+漢字-&gt;かたかな変換(&quot;-JK&quot;オプション)、ひらがな-&gt;かたかな変換(&quot;-HK&quot;オプション)、かたかな-&gt;ひらがな変換(&quot;-KH&quot;オプション)の機能を実装</dl>
+
+
+<dl>
+<dt>
+2002/12/28 Version 0.2.0
+<dd>
+ふりがなモード(&quot;-f&quot;オプション)、分割モード(&quot;-s&quot;オプション)、分かち書き(&quot;-w&quot;オプション)の機能を実装</dl>
+
+
+<dl>
+<dt>
+2002/12/24 Version 0.1.0
+<dd>
+First release.</dl>
+
+
+<h2 id="doc1_117">ライセンス</h2>
+
+<p class="first_ja">KAKASI/Java はフリーソフトウェアです。あなたは、 <a href="http://www.gnu.org/" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">Free Software Foundation</a> が公表した <a href="http://www.gnu.org/copyleft/gpl.html" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">GNU General Public License (GNU 一般公有使用許諾) バージョン 2</a> あるいはそれ以降の各バージョンの中からいずれかを選択し、そのバージョンが定める条項に従って本プログラムを再頒布または変更することができます。</p>
+<p>KAKASI/Java は有用とは思いますが、頒布にあたっては、市場性及び特定目的適合性についての暗黙の保証を含めて、いかなる保証も行ないません。詳細については <a href="http://www.gnu.org/copyleft/gpl.html" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">GNU General Public License</a> をお読みください。</p>
+
+<h2 id="doc1_135">動作環境</h2>
+
+<p class="first_ja"><a href="http://java.sun.com/j2se/" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">JDK1.2</a> 以上が必要です。
+    動作確認は、JDK 1.3.1 及び JDK 1.4.1 で行っています。</p>
+<p>ソースからビルドするには、 <a href="http://jakarta.apache.org/ant/index.html" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">Apache Ant 1.5</a> 以上が必要になります。</p>
+
+<h2 id="doc1_151">インストール</h2>
+
+<p class="first_ja">バイナリ版は、アーカイブを解凍するだけでインストール完了です。
+    あとは、必要に応じて、 bin ディレクトリに PATH を設定するか、bin 以下のコマンドに対して PATH の設定されているディレクトリにシンボリックリンクをはるなどしてください。</p>
+<p>ソース版からは、 <a href="http://jakarta.apache.org/ant/index.html" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">Apache Ant</a> を使用して、インストールを行います。
+    アーカイブを解凍して生成されるディレクトリ kakasi-java-x.x.x-src に移動して、
+
+    
+<pre id="doc1_161" class="console">
+$ ant install
+</pre>
+
+
+
+    と実行すると、 /usr/local の下に ディレクトリ kakasi-java-x.x.x が生成され、そこにインストールされます。
+    この時、 辞書の作成にしばらくの時間がかかります。
+    /usr/local 以外のディレクトリにインストールしたい場合、以下の要領でディレクトリを指定します。
+
+    
+<pre id="doc1_164" class="console">
+$ ant -Dinstall.base=/some/dir install
+</pre></p>
+
+<h2 id="doc1_169">使い方</h2>
+
+
+<h3 id="doc1_kakasi_j">基本的な使い方</h3>
+
+<p class="first_ja">インストール先の bin ディレクトリにある kakasi_j コマンドで KAKASI/Java を起動します。
+     kakasi_j は、 sh スクリプトですが、後述しますように、直接 java コマンドを使用することもできます。</p>
+
+<h4 id="doc1_176">書式</h4>
+
+
+<pre id="doc1_178" class="program">
+kakasi_j [-JH | -JK | -JA] [-HK | -Ha] [-KH | -Ka]
+         [-i&lt;input-encoding&gt;] [-o&lt;output-encoding&gt;]
+         [-p] [-f] [-c] [-s] [-b]
+         [-r{hepburn|kunrei}] [-C | -U] [-w]
+         [dictionary1 [dictionary2 [,,,]]]
+</pre>
+
+
+<h4 id="doc1_182">解説</h4>
+
+<p class="first_ja">kakasi_j は、標準入力から入力された日本語の文章を、指定された文字セットに変換して標準出力に出力します。例えば、次の例では、ファイル document の中の漢字がひらがなに変換されて、標準出力に出力されます。</p>
+
+<pre id="doc1_187" class="console">
+$ kakasi_j -JH &lt; document
+</pre>
+
+
+<h4 id="doc1_191">変換指定オプション</h4>
+
+
+<div class="table">
+<table id="doc1_193" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">オプション</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-JH</td>
+<td>漢字をひらがなに変換します。</td>
+</tr>
+<tr>
+<td>-JK</td>
+<td>漢字をかたかなに変換します。</td>
+</tr>
+<tr>
+<td>-Ja</td>
+<td>漢字をローマ字に変換します。</td>
+</tr>
+<tr>
+<td>-HK</td>
+<td>ひらがなをかたかなに変換します。</td>
+</tr>
+<tr>
+<td>-Ha</td>
+<td>ひらがなをローマ字に変換します。</td>
+</tr>
+<tr>
+<td>-KH</td>
+<td>かたかなをひらがなに変換します。</td>
+</tr>
+<tr>
+<td>-Ka</td>
+<td>かたかなをローマ字に変換します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<h4 id="doc1_275">漢字エンコーディング</h4>
+
+
+<div class="table">
+<table id="doc1_277" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">オプション</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i&lt;input-encoding&gt;</td>
+<td>入力される文字のエンコーディングを指定します。MS932、EUC_JPなどJDKによりサポートされるエンコーディングが指定できます。デフォルトは、JDKのデフォルトエンコーディングが使用されます。</td>
+</tr>
+<tr>
+<td>-o&lt;output-encoding&gt;</td>
+<td>出力する文字のエンコーディングを指定します。MS932、EUC_JPなどJDKによりサポートされるエンコーディングが指定できます。デフォルトは、JDKのデフォルトエンコーディングが使用されます。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<h4 id="doc1_314">漢字かな変換オプション</h4>
+
+<p class="first_ja">変換指定オプションに -Jx を使って漢字を変換する場合にのみ適用されるオプションです。</p>
+
+<div class="table">
+<table id="doc1_319" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">オプション</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p</td>
+<td>辞書中で照合した読み方が複数ある時に、そのすべてを<code>{}</code>でくくって表示します。
+<pre>  牧場 -&gt; <code>{ぼくじょう|まきば}</code></pre></td>
+</tr>
+<tr>
+<td>-f</td>
+<td>ふりがなモード。変換前の漢字の脇にその読みを差し込みます。
+<pre>  漢字の脇に -&gt; <code>漢字[かんじ]の脇[わき]に</code></pre></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<h4 id="doc1_369">その他のオプション</h4>
+
+
+<div class="table">
+<table id="doc1_371" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">オプション</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>単語／熟語中に含まれる空白や改行を除いて読むようにします。これにより、複数の行に改行で分割されたり、行の先頭にタブや引用符がある時でもよみがなの解釈が行えるようになります。分かち書きを行うときは、オリジナルのKAKASIと違い、ひらがなやカタカナの中でも有効になります。</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>漢字からの変換で変換ごとに空白の区切りをいれます。また、ASCII／ひらがな／カタカナ／記号などの文字種が切りわるときにも区切り文字を入れます。</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>改行文字を出力するときに、出力バッファをフラッシュしないようにします。オリジナルのKAKASIにはない独自のオプションです。</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>ローマ字への変換様式を指定します。hepburn(ヘボン式)とkunrei(訓令式)のどちらかを指定することができます。デフォルトは、ヘボン式です。</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>ローマ字に変換する際に、単語／熟語の先頭のアルファベットを大文字にします。</td>
+</tr>
+<tr>
+<td>-U</td>
+<td>ローマ字に変換する際に、アルファベットを全て大文字にします。</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>分かち書きをします。オリジナルのKAKASI-2.3.4と違い、&quot;-c&quot;オプションとは独立していますので、必要であれば、別途&quot;-c&quot;オプションを付加してください。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<h4 id="doc1_453">辞書</h4>
+
+<p class="first_ja">コマンドラインの最後に、ユーザの辞書を任意に追加指定することができます。
+      辞書ファイルのフォーマットについては、<a href="#doc1_dict-form" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">こちら</a>を参照してください。
+      辞書ファイル読み込み時のエンコーディングには、JISAutoDetect (JDK による Shift-JIS、EUC-JP、ISO 2022 JP の自動検出) が使用されます。</p>
+
+<h4 id="doc1_462">環境変数</h4>
+
+<p class="first_ja">必要に応じて以下の環境変数を設定してください。</p>
+
+<div class="table">
+<table id="doc1_467" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">環境変数</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JAVACMD</td>
+<td>Javaの実行コマンドを指定します。</td>
+</tr>
+<tr>
+<td>JAVA_HOME</td>
+<td>JDKのインストールディレクトリを指定します。Javaの実行コマンドを特定するために使用されます。</td>
+</tr>
+<tr>
+<td>KAKASI_HOME</td>
+<td>KAKASI/Javaをインストールしたディレクトリを指定します。</td>
+</tr>
+<tr>
+<td>JAVA_OPTS</td>
+<td>Javaコマンドへ渡すオプションを指定します。この変数に-Dxxx=yyyの形式で<a href="#doc1_system-props" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">システムプロパティ</a>を指定することができます。</td>
+</tr>
+<tr>
+<td>KAKASI_ARGS</td>
+<td>KAKASI/Javaのオプションを指定します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>上記の環境変数は、ファイル $HOME/.kakasirc に sh スクリプトの形式で記述しておくことができます。以下は、その記述例です。
+      
+<pre id="doc1_535" class="program">
+JAVA_OPTS=&quot;-Dkakasi.kanwaDictionary=/some/dir/kanwadict&quot;
+KAKASI_HOME=&quot;/some/dir/kakasi-java-0.3.0&quot;
+</pre></p>
+
+<h4 id="doc1_540">直接 Java コマンドを使用する</h4>
+
+<p class="first_ja">kakasi_j コマンドを使用せずに、以下の形式で直接 Java コマンドを使用して、KAKASI/Java を起動することができます。</p>
+
+<pre id="doc1_545" class="program">
+java &lt;JAVA オプション&gt; -jar /installdir/kakasi-java-x.x.x/lib/kakasi.jar
+     &lt;kakasi オプション&gt;
+</pre>
+
+<p>JAVA オプションには最低限、<a href="#doc1_system-props" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">システムプロパティ</a> kakasi.home に KAKASI/Java をインストールしたディレクトリを指定する必要があります。</p>
+<p>kakasi オプションは、kakasi_j コマンドと同じです。</p>
+<p>以下は、実行例です。</p>
+
+<pre id="doc1_560" class="console">
+$ java -Dkakasi.home=/usr/local/kakasi-java-0.3.0 -jar \
+       /usr/local/kakasi-java-0.3.0/lib/kakasi.jar -JH
+</pre>
+
+
+<h3 id="doc1_mkkanwa_j">漢和辞書を作成する</h3>
+
+<p class="first_ja">インストール先の bin ディレクトリにある mkkanwa_j コマンドで KAKASI/Java が使用する漢和辞書を作成することができます。
+     mkkanwa_j は、 sh スクリプトですが、後述しますように、直接 java コマンドを使用することもできます。</p>
+
+<h4 id="doc1_570">書式</h4>
+
+
+<pre id="doc1_572" class="program">
+mkkanwa_j kanwadict dictionary1 [dictionary2 [,,,]]
+</pre>
+
+
+<h4 id="doc1_576">解説</h4>
+
+
+<div class="table">
+<table id="doc1_578" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">引数</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kanwadict</td>
+<td>作成する漢和辞書ファイルを指定します。</td>
+</tr>
+<tr>
+<td>dictionary1 [dictionary2 [,,,]]</td>
+<td>読み込む辞書ファイルを指定します。辞書ファイルのフォーマットについては、<a href="#doc1_dict-form" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">こちら</a>を参照してください。辞書ファイル読み込み時のエンコーディングには、JISAutoDetect (JDKによるShift-JIS、EUC-JP、ISO 2022 JPの自動検出)が使用されます。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p class="first_ja">作成された漢和辞書ファイルを使用するには、システムプロパティ kakasi.kanwaDictionary に指定します。kakasi_j コマンドで使用する場合は、環境変数 JAVA_OPTS に &quot;-Dkakasi.kanwaDictionary=/some/dir/kanwadict&quot; の形式で指定します。</p>
+<p>なお、作成される漢和辞書ファイルは、オリジナルの kakasi とは互換性がありません。</p>
+
+<h4 id="doc1_624">環境変数</h4>
+
+<p class="first_ja">必要に応じて以下の環境変数を設定してください。</p>
+
+<div class="table">
+<table id="doc1_629" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">環境変数</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JAVACMD</td>
+<td>Javaの実行コマンドを指定します。</td>
+</tr>
+<tr>
+<td>JAVA_HOME</td>
+<td>JDKのインストールディレクトリを指定します。Javaの実行コマンドを特定するために使用されます。</td>
+</tr>
+<tr>
+<td>KAKASI_HOME</td>
+<td>KAKASI/Javaをインストールしたディレクトリを指定します。</td>
+</tr>
+<tr>
+<td>JAVA_OPTS</td>
+<td>Javaコマンドへ渡すオプションを指定します。この変数に-Dxxx=yyyの形式で<a href="#doc1_system-props" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">システムプロパティ</a>を指定することができます。</td>
+</tr>
+<tr>
+<td>MKKANWA_ARGS</td>
+<td>mkkanwa_jコマンドへ渡す引数を指定します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>上記の環境変数は、ファイル $HOME/.kakasirc に sh スクリプトの形式で記述しておくことができます。</p>
+
+<h4 id="doc1_699">直接 Java コマンドを使用する</h4>
+
+<p class="first_ja">mkkanwa_j コマンドを使用せずに、以下の形式で直接 Java を使用して、漢和辞書を作成することができます。</p>
+
+<pre id="doc1_704" class="program">
+java &lt;JAVA オプション&gt; 
+     -classpath /installdir/kakasi-java-x.x.x/lib/kakasi.jar
+     com.kawao.kakasi.KanwaDictionary kanwadict dictionary1 [dictionary2 [,,,]]
+</pre>
+
+<p>辞書ファイルの指定方法は mkkanwa_j コマンドと同じです。</p>
+<p>以下は、実行例です。</p>
+
+<pre id="doc1_713" class="console">
+$ java -classpath /usr/local/kakasi-java-0.3.0/lib/kakasi.jar \
+       com.kawao.kakasi.KanwaDictionary kanwadict mydict kakasidict
+</pre>
+
+
+<h3 id="doc1_718">ライブラリとして使用する</h3>
+
+<p class="first_ja"><a href="api/index.html" onMouseOver="hilightHyperlink(this)" onMouseOut="normal(this)">API ドキュメント</a> を参照してください。
+     使い方のサンプルとしては、Kakasi.java のメインメソッドが参考になると思います。</p>
+<p>また、ライブラリとして使用する際は、<a href="#doc1_system-props" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">システムプロパティ</a> kakasi.home を適切に設定しておく必要があります。</p>
+
+<h3 id="doc1_733">Web サービスとして使用する</h3>
+
+<p class="first_ja"><a href="http://www.kawao.com/java/kakasi-ws/" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">KAKASI WebService</a> を参照してください。</p>
+
+<h3 id="doc1_system-props">システムプロパティ</h3>
+
+
+<div class="table">
+<table id="doc1_744" class="data" rules="groups">
+<colgroup span=2>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th align="center">システムプロパティ</th>
+<th align="center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kakasi.home</td>
+<td>KAKASI/Javaのインストールされているディレクトリを指定します。直接Javaコマンドを起動する場合や、KAKASI/Javaをライブラリとして使用する場合は、このプロパティの値を適切に設定しておく必要があります。</td>
+</tr>
+<tr>
+<td>kakasi.kanwaDictionary</td>
+<td>漢和辞書ファイルを指定します。未指定の場合は、システムプロパティkakasi.homeで示されるディレクトリの下の、&quot;/lib/kanwadict&quot;が使用されます。</td>
+</tr>
+<tr>
+<td>kakasi.itaijiDictionary.path</td>
+<td>異体字辞書ファイルを指定します。未指定の場合は、kakasi.jarの中に含まれているデフォルトの異体字辞書ファイルが使用されます。</td>
+</tr>
+<tr>
+<td>kakasi.itaijiDictionary.encoding</td>
+<td>異体字辞書ファイルのエンコーディングを指定します。未指定の場合は、JISAutoDetect (JDKによるShift-JIS、EUC-JP、ISO 2022 JPの自動検出)が使用されます。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<h3 id="doc1_dict-form">辞書ファイルについて</h3>
+
+<p class="first_ja"><a href="#doc1_kakasi_j" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">kakasi_j</a> 及び <a href="#doc1_mkkanwa_j" onMouseOver="hilightSelflink(this)" onMouseOut="normal(this)">mkkanwa_j</a> へ指定する辞書ファイルのフォーマットは、オリジナルの kakasi と同様に SKK 型の辞書と標準的な辞書の双方が使えます。
+     
+<dl>
+<dt>
+SKK型
+<dd>
+<code>よみ[ \t]+/漢字１/[漢字２/[漢字３/[,,,]]]</code>
+<dt>
+標準型
+<dd>
+<code>よみ[, \t]+漢字[, \t]*</code></dl>
+
+
+     行の先頭がひらがなかかたかなで始まっていない場合は、その行を無視します。</p>
+<p>異体字辞書ファイルについても、オリジナルの kakasi と同じ、一行に &quot;壱一&quot; など、一組の異体字を記述したフォーマットです。</p>
+<p>KAKASI/Java の配布ファイルには、オリジナルの KAKASI-2.3.4 に含まれる辞書ファイル(kakasidict 及び itaijidict) が含まれています。
+     ソース版にはこれらのファイルが未変更のまま、バイナリ版には KAKASI/Java 用に変換したものが含まれています。
+     これらのファイルの著作権は、KAKASIのオリジナルの作者である高橋裕信さん他が所持しており、利用条件は、 KAKASI/Java と同様 <a href="http://www.gnu.org/copyleft/gpl.html" target="_top" onMouseOver="hilightExternallink(this)" onMouseOut="normal(this)">GPL</a> ライセンスに従います。</p>
+
+   
+<div class="table">
+<table id="doc1_8" class="footer" rules="groups">
+<colgroup span=1>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td>Copyright (c) 2002-2003 Tomoyuki Kawao. All Rights Reserved.</td>
+</tr>
+<tr>
+<td><a href="mailto:kawao@kawao.com" onMouseOver="hilightHyperlink(this)" onMouseOut="normal(this)">kawao@kawao.com</a></td>
+</tr>
+<tr>
+<td>$Date: 2003/03/02 10:12:20 $</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+  </body>
+</html>
