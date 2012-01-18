@@ -41,3 +41,5 @@ Example:
 java  -Dkakasi.home=. -jar lib/kakasi.jar -Ja
 国際財務報告基準
 kokusaizaimuhoukokukijun
+
+Original documentation (in Japanese): http://nicolas-raoul.github.com/kakasi-java
