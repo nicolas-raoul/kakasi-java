@@ -1,9 +1,6 @@
 Kakasi-java
 Convert Japanese kanji into romaji
-
 See also http://kakasi.namazu.org
-Before using Kakasi-java, be sure to try MeCab-java, it is considered by many as more performant:
-http://code.google.com/p/mecab/source/browse/#svn%2Ftrunk%2Fmecab%2Fjava
 
 Originally written by Tomoyuki Kawao
 Forked from the last code found at http://blog.kenichimaehashi.com/?article=13048363750
@@ -45,3 +42,6 @@ java  -Dkakasi.home=. -jar lib/kakasi.jar -Ja
 kokusaizaimuhoukokukijun
 
 Original documentation (in Japanese): http://nicolas-raoul.github.com/kakasi-java
+
+You might also be interested in MeCab, which is not 100% Java (JNI binding) but considered by many as more performant:
+http://code.google.com/p/mecab/source/browse/#svn%2Ftrunk%2Fmecab%2Fjava
