@@ -63,11 +63,15 @@ class DefaultConverter implements Converter {
                 block = Character.UnicodeBlock.of((char)ch);
                 break;
             }
-            if (!pblock.equals(block)) {
-                break;
+            if (isJapanese(block) != isJapanese(pblock)) {
+            	break;
             }
         }
         return true;
+    }
+    
+    private boolean isJapanese(Character.UnicodeBlock block) {
+    	return block.equals(Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS) || block.equals(Character.UnicodeBlock.HIRAGANA) || block.equals(Character.UnicodeBlock.KATAKANA);
     }
 
 }
