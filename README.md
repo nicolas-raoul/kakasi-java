@@ -8,9 +8,11 @@ Originally written by Tomoyuki Kawao
 Forked from the last code found at http://blog.kenichimaehashi.com/?article=13048363750
 If you know any more recent version, please let me know by email nicolas.raoul at gmail
 
-To build just run: ant
+To build just run: `ant`
 
-Usage: java -Dkakasi.home=. -jar lib/kakasi.jar [-JH | -JK | -Ja] [-HK | -Ha] [-KH | -Ka]
+Usage: 
+
+       java -Dkakasi.home=. -jar lib/kakasi.jar [-JH | -JK | -Ja] [-HK | -Ha] [-KH | -Ka]
 		[-i<input-encoding>] [-o<output-encoding>]
 		[-p] [-f] [-c] [-s] [-b]
 		[-r{hepburn|kunrei}] [-C | -U] [-w]
@@ -39,11 +41,9 @@ Usage: java -Dkakasi.home=. -jar lib/kakasi.jar [-JH | -JK | -Ja] [-HK | -Ha] [-
 	 -w: wakachigaki mode
 
 Example:
-java  -Dkakasi.home=. -jar lib/kakasi.jar -Ja
-国際財務報告基準
-kokusaizaimuhoukokukijun
+
+    java  -Dkakasi.home=. -jar lib/kakasi.jar -Ja
+    国際財務報告基準
+    kokusaizaimuhoukokukijun
 
 Original documentation (in Japanese): http://nicolas-raoul.github.com/kakasi-java
-
-You might also be interested in MeCab, which is not 100% Java (JNI binding) but considered by many as more performant:
-http://code.google.com/p/mecab/source/browse/#svn%2Ftrunk%2Fmecab%2Fjava
